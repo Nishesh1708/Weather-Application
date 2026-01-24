@@ -1,0 +1,112 @@
+<%- include("partials/header") %>
+
+<div class="min-h-screen bg-gradient-to-br from-indigo-600 to-sky-500 text-white">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-6 md:px-16 py-5">
+    <h1 class="text-2xl font-bold tracking-wide">WeatherNow</h1>
+
+    <a
+      href="/auth"
+      class="bg-white text-indigo-600 px-5 py-2 rounded-lg font-semibold hover:bg-gray-100 transition"
+    >
+      Login / Register
+    </a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="flex flex-col items-center text-center mt-20 px-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
+      Simple. Fast. Accurate Weather.
+    </h2>
+
+    <p class="mt-5 max-w-2xl text-lg text-indigo-100">
+      WeatherNow is a modern weather application that provides real-time
+      weather updates, accurate forecasts, and a clean user experience
+      designed for everyday use.
+    </p>
+
+    <a
+      href="/auth"
+      class="mt-8 bg-yellow-400 text-indigo-900 px-8 py-3 rounded-xl font-semibold hover:bg-yellow-300 transition"
+    >
+      Get Started
+    </a>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="mt-28 px-6 md:px-16">
+    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+      <!-- Text -->
+      <div>
+        <h3 class="text-3xl font-bold mb-4">About Me</h3>
+        <p class="text-indigo-100 leading-relaxed">
+          Hi, I’m <span class="font-semibold text-white">Nishesh Shukla</span>,
+          a Computer Science undergraduate with a strong interest in backend
+          development, cloud computing, and building scalable web applications.
+          This project showcases my skills in Node.js, Express, MVC architecture,
+          REST APIs, and modern frontend design using Tailwind CSS.
+        </p>
+      </div>
+
+      <!-- Card -->
+      <div class="bg-white/20 backdrop-blur-md p-6 rounded-2xl shadow-lg">
+        <ul class="space-y-3 text-sm">
+          <li>⚙ Node.js & Express</li>
+          <li>🎨 Tailwind CSS</li>
+          <li>🌍 OpenWeather API</li>
+          <li>🧱 MVC Architecture</li>
+          <li>☁ Cloud & Backend Focus</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="mt-28 px-6 md:px-16">
+    <h3 class="text-3xl font-bold text-center mb-12">What This App Offers</h3>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="bg-white/20 backdrop-blur-md p-6 rounded-xl text-center">
+        🌡 Real-Time Weather
+      </div>
+      <div class="bg-white/20 backdrop-blur-md p-6 rounded-xl text-center">
+        📍 Location-Based Forecasts
+      </div>
+      <div class="bg-white/20 backdrop-blur-md p-6 rounded-xl text-center">
+        📅 Accurate Daily Data
+      </div>
+      <div class="bg-white/20 backdrop-blur-md p-6 rounded-xl text-center">
+        ⚡ Fast & Lightweight
+      </div>
+      <div class="bg-white/20 backdrop-blur-md p-6 rounded-xl text-center">
+        🔐 Secure Authentication
+      </div>
+      <div class="bg-white/20 backdrop-blur-md p-6 rounded-xl text-center">
+        🚀 Scalable Backend
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mt-28 text-center pb-16 px-6">
+    <h3 class="text-3xl font-bold">
+      Ready to Explore the Weather?
+    </h3>
+    <a
+      href="/auth"
+      class="inline-block mt-6 bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition"
+    >
+      Login / Register
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-indigo-100 text-sm pb-6">
+    © 2026 WeatherNow • Built by Nishesh Shukla
+  </footer>
+
+</div>
+
+<%- include("partials/footer") %>

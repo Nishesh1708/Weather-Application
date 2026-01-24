@@ -1,0 +1,130 @@
+<%- include("partials/header") %>
+
+<div class="min-h-screen bg-gradient-to-br from-sky-400 to-blue-700 text-white">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-6 md:px-16 py-4">
+    <h1 class="text-2xl font-bold">WeatherNow</h1>
+    <button class="hidden md:block bg-white text-blue-700 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100">
+      Get Started
+    </button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 mt-12">
+
+    <!-- Left -->
+    <div class="max-w-xl text-center md:text-left">
+      <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        Real-Time Weather <br /> Updates Anywhere
+      </h2>
+
+      <p class="mt-4 text-lg text-blue-100">
+        Check temperature, humidity, wind speed and forecasts for any city in the world.
+      </p>
+
+      <!-- Search -->
+      <form action="/weather" method="GET" class="mt-6 flex flex-col sm:flex-row gap-3">
+        <input
+          type="text"
+          name="city"
+          placeholder="Enter city name"
+          class="px-4 py-3 rounded-lg text-gray-800 outline-none w-full"
+          required
+        />
+        <button
+          type="submit"
+          class="bg-yellow-400 text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300"
+        >
+          Get Weather
+        </button>
+      </form>
+    </div>
+
+    <!-- Right (Weather Preview Card) -->
+    <!-- Right (Weather Preview Card) -->
+<div class="mt-10 md:mt-0 bg-white/20 backdrop-blur-md p-6 rounded-2xl shadow-lg w-full md:w-96">
+
+  <% if (weatherData) { %>
+
+    <h3 class="text-xl font-semibold">
+      📍 <%= weatherData.name %>, <%= weatherData.sys.country %>
+    </h3>
+
+    <p class="text-5xl font-bold mt-4">
+      <%= (weatherData.main.temp - 273.15).toFixed(1) %>°C
+    </p>
+
+    <p class="mt-2 text-blue-100 capitalize">
+      <%= weatherData.weather[0].description %>
+    </p>
+
+    <div class="grid grid-cols-2 gap-4 mt-6 text-sm">
+      <div>💧 Humidity: <%= weatherData.main.humidity %>%</div>
+      <div>🌬 Wind: <%= weatherData.wind.speed %> m/s</div>
+      <div>
+        🌡 Feels Like:
+        <%= (weatherData.main.feels_like - 273.15).toFixed(1) %>°C
+      </div>
+      <div>☁ Clouds: <%= weatherData.clouds.all %>%</div>
+    </div>
+
+    <% if (weatherData.rain && weatherData.rain["1h"]) { %>
+      <p class="mt-4 text-sm">🌧 Rain (last 1h): <%= weatherData.rain["1h"] %> mm</p>
+    <% } %>
+
+  <% } else { %>
+
+    <!-- Default UI (No search yet) -->
+    <h3 class="text-xl font-semibold">📍 Search a City</h3>
+    <p class="text-5xl font-bold mt-4">--°C</p>
+    <p class="mt-2 text-blue-100">Weather info will appear here</p>
+
+  <% } %>
+
+</div>
+
+  </section>
+
+  <!-- Features -->
+  <section class="mt-20 px-6 md:px-16">
+    <h3 class="text-3xl font-bold text-center mb-10">
+      App Features
+    </h3>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <% const features = [
+        "🌡 Real-Time Temperature",
+        "📅 7-Day Forecast",
+        "🌍 Global City Search",
+        "📍 Location Detection",
+        "🌗 Dark / Light Mode",
+        "⚠ Weather Alerts"
+      ]; %>
+
+      <% features.forEach(feature => { %>
+        <div class="bg-white/20 backdrop-blur-md p-6 rounded-xl text-center font-semibold">
+          <%= feature %>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mt-20 text-center pb-12 px-6">
+    <h3 class="text-3xl font-bold">
+      Know the Weather Before You Step Out 🌤
+    </h3>
+    <a href="/" class="inline-block mt-6 bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100">
+      Check Weather Now
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-blue-100 text-sm pb-4">
+    © 2026 WeatherNow | Powered by OpenWeather API
+  </footer>
+
+</div>
+
+<%- include("partials/footer") %>

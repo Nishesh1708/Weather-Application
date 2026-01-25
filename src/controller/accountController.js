@@ -22,28 +22,41 @@ module.exports.registrationController = async function(req, res) {
                     })
                     let token = generateToken(user);
                     res.cookie("token", token);
-                    res.redirect("/home");
+                    return res.redirect("/home");
                 })  
             }
         })
     }catch(err) {
         debug(err);
         req.flash("error", "Something went wrong");
-        res.render("register", {flash});
+        return res.render("register", {flash});
     }
 }
 
 module.exports.loginController = async function(req, res) {
     try{
         let {email, password} = req.body;
-        let user = await userModel.findOne(email);
+        let user = await userModel.findOne({ email });
+        if(!user){
+            req.flash("error", "something went wrong");
+            return res.redirect("/account/login");
+        }
         bcrypt.compare(password, user.password, function(err, result) {
+            if (err) {
+                req.flash("error", "Something went wrong");
+                return res.redirect("/login");
+            }
+
+            if (!result) {
+                req.flash("error", "Invalid email or password");
+                return res.redirect("/login");
+            }
             let token = generateToken(user);
             res.cookie("token", token);
-            res.redirect("/home");
+            return res.redirect("/home");
         })
     }catch(err){
-        req.flash("error", "something went wrong");
-        res.render("login", {flash})
+        let error = req.flash("error", "something went wrong");
+        return res.render("login", {error});
     }
 }

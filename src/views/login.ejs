@@ -13,7 +13,7 @@
     </p>
 
     <!-- Login Form -->
-    <form action="/login" method="POST" class="mt-8 space-y-5">
+    <form action="/account/login" method="POST" class="mt-8 space-y-5">
 
       <div>
         <label class="block text-sm mb-1">Email</label>
@@ -37,12 +37,12 @@
         />
       </div>
 
-      <!-- Error Message (Optional) -->
-      <% if (typeof error !== "undefined") { %>
+      <% if (error && error.length > 0) { %>
         <p class="text-red-200 text-sm text-center">
-          <%= error %>
+          <%= error[0] %>
         </p>
       <% } %>
+
 
       <button
         type="submit"
@@ -63,7 +63,7 @@
     <p class="text-center text-sm text-indigo-100">
       Don’t have an account?
       <a
-        href="/register"
+        href="/account/register"
         class="text-white font-semibold hover:underline"
       >
         Create account

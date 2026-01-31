@@ -6,11 +6,14 @@ const debug = require("debug")("app:main");
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
+const path = require("path");
 
-require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
+require("dotenv").config(path.resolve(__dirname, "../.env"));
+require("./config/mongoose-config");
 
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(cookieParser());

@@ -6,17 +6,21 @@ const jwt = require('jsonwebtoken');
 
 module.exports.registrationController = async function(req, res) {
     try{
-        let {username, email, password } = req.body;
+        let {name, email, password } = req.body;
         let user = await userModel.findOne({email});
-        if(user) return res.status(401).flash('error', "User already exist");
+        if(user){
+            req.flash("error", "User already exists");
+            return res.redirect("/account/register");
+        }
         bcrypt.genSalt(10, function(err, salt) {
             if(err){
                 debug("Error generating salt", err);
-                return res.status(500).send("Internal Server Error");
+                req.flash("error","Internal Server Error");
+                return res.redirect("/account/register");
             }else{
-                bcrypt.hash(password, salt, async function(err, hash) {
-                    let user = userModel.create({
-                        username,
+                bcrypt.hash(password, salt, async function(hash) {
+                    let user = await userModel.create({
+                        name,
                         email,
                         password: hash
                     })
@@ -29,7 +33,7 @@ module.exports.registrationController = async function(req, res) {
     }catch(err) {
         debug(err);
         req.flash("error", "Something went wrong");
-        return res.render("register", {flash});
+        return res.redirect("/account/register");
     }
 }
 
@@ -44,19 +48,19 @@ module.exports.loginController = async function(req, res) {
         bcrypt.compare(password, user.password, function(err, result) {
             if (err) {
                 req.flash("error", "Something went wrong");
-                return res.redirect("/login");
+                return res.redirect("/account/login");
             }
 
             if (!result) {
                 req.flash("error", "Invalid email or password");
-                return res.redirect("/login");
+                return res.redirect("/account/login");
             }
             let token = generateToken(user);
             res.cookie("token", token);
             return res.redirect("/home");
         })
     }catch(err){
-        let error = req.flash("error", "something went wrong");
-        return res.render("login", {error});
+        req.flash("error", "Something went wrong");
+        return res.redirect("/account/login");
     }
 }

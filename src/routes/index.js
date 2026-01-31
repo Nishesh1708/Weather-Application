@@ -9,9 +9,10 @@ router.get("/", function(req, res) {
 })
 
 router.get("/home", function(req, res) { 
-    res.render("home");
+    const error = req.flash("error");
+    res.render("home",{error,weatherData:null});
 })
 
-router.post("/home", getWeather);
+router.post("/weather", getWeather);
 
 module.exports = router;

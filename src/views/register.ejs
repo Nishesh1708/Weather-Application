@@ -13,7 +13,7 @@
     </p>
 
     <!-- Register Form -->
-    <form action="/register" method="POST" class="mt-8 space-y-5">
+    <form action="/account/register" method="POST" class="mt-8 space-y-5">
 
       <!-- Full Name -->
       <div>
@@ -47,18 +47,6 @@
           name="password"
           placeholder="Minimum 6 characters"
           minlength="6"
-          required
-          class="w-full px-4 py-3 rounded-lg text-gray-800 outline-none focus:ring-2 focus:ring-indigo-500"
-        />
-      </div>
-
-      <!-- Confirm Password -->
-      <div>
-        <label class="block text-sm mb-1">Confirm Password</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Re-enter password"
           required
           class="w-full px-4 py-3 rounded-lg text-gray-800 outline-none focus:ring-2 focus:ring-indigo-500"
         />

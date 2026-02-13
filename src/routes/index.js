@@ -2,13 +2,14 @@ const express =  require("express");
 const router = express.Router();
 const debug = require("debug")("app:routes:index");
 const {getWeather} = require("../controller/weather-controller");
+const isLoggedin = require("../middleware/isLoggedin");
 
 router.get("/", function(req, res) {
     debug("landing page");
     res.render("index");
 })
 
-router.get("/home", function(req, res) { 
+router.get("/home", isLoggedin ,function(req, res) { 
     const error = req.flash("error");
     res.render("home",{error,weatherData:null});
 })

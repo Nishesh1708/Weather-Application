@@ -18,7 +18,7 @@ module.exports.registrationController = async function(req, res) {
                 req.flash("error","Internal Server Error");
                 return res.redirect("/account/register");
             }else{
-                bcrypt.hash(password, salt, async function(hash) {
+                bcrypt.hash(password, salt, async function(err,hash) {
                     let user = await userModel.create({
                         name,
                         email,

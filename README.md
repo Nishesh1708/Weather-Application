@@ -1,22 +1,22 @@
-# 🌦️ Weather Application
+# Weather Application
 
 A weather application built with **Node.js** that fetches and displays real-time weather data using external APIs.  
 The project follows a clean **MVC architecture** and includes authentication middleware for protected routes.
 
 ---
 
-## 🚀 Features
+## Features
 
-- 🌍 Search weather by city
-- 🔄 Fetch real-time weather data via external API
-- 🧠 Clean MVC project structure
-- 🔐 authentication middleware for route protectio
-- 🛡 Secure handling of API keys
-- 📁 Organized backend routing and controllers
+-  Search weather by city
+-  Fetch real-time weather data via external API
+-  Clean MVC project structure
+-  Authentication middleware for route protection
+-  Secure handling of API keys
+-  Organized backend routing and controllers
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 **Backend:** Node.js, Express.js  
 **Frontend:** EJS, HTML, CSS  
@@ -25,7 +25,7 @@ The project follows a clean **MVC architecture** and includes authentication mid
 **Version Control:** Git & GitHub  
 
 ---
-## 📂 Project Structure
+##  Project Structure
 
 ```
 weather-application/
@@ -54,7 +54,7 @@ weather-application/
 
 ---
 
-## ⚙️ Installation & Setup
+##  Installation & Setup
 
 ### 1️⃣ Clone the repository
 
@@ -94,15 +94,15 @@ http://localhost:3000
 
 ---
 
-## 📌 Future Enhancements
+## Future Enhancements
 
-- 📊 5-day weather forecast
-- 📍 Location-based weather detection
-- 🗄 Database integration for saved searches
+-  5-day weather forecast
+-  Location-based weather detection
+-  Database integration for saved searches
 
 ---
 
-## 🎯 Learning Outcomes
+## Learning Outcomes
 
 This project demonstrates:
 
@@ -116,6 +116,6 @@ This project demonstrates:
 
 ---
 
-## 📜 License
+##  License
 
 This project is built for educational and portfolio purposes.

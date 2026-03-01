@@ -1,13 +1,13 @@
 const weatherModel = require("../models/weatherModel");
 
 
-module.exports.getWeather =  async function(req, res) {
+module.exports.getWeather =  async function(req, res, next) {
     try{
         const city = req.body.city;
+        console.log(city);
         const weatherData = await weatherModel.getWeather(city);
-        res.render("home", {error:null,weatherData});
+        res.render("home", {saveCities:null,error:null,weatherData});
     }catch(err) {
-        req.flash("error", "Could not fetch weather data. Please try again.");
-        return res.redirect("/home");
+        next(err);
     }
 }

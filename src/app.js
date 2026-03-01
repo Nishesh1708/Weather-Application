@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const index = require("./routes/index");
 const userRoute = require("./routes/userRoute");
+const errorHandler = require("./middleware/errorHandler");
 const debug = require("debug")("app:main");
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
@@ -28,5 +29,6 @@ app.use(flash());
 debug("Starting application..");
 app.use("/", index);
 app.use("/account", userRoute);
+app.use(errorHandler);
 
 app.listen(3000);

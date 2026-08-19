@@ -50,6 +50,64 @@
 
 </section>
 
+<!-- Favourite Cities -->
+<section class="px-6 md:px-16 mt-10">
+
+  <div class="max-w-4xl mx-auto">
+
+    <h3 class="text-2xl font-bold mb-5">
+      ⭐ Favourite Cities
+    </h3>
+
+    <% if (User.cities && User.cities.length > 0) { %>
+
+      <div class="flex flex-wrap gap-3">
+
+        <% User.cities.forEach(city => { %>
+
+          <form action="/weather" method="POST">
+
+            <input
+              type="hidden"
+              name="city"
+              value="<%= city %>"
+            />
+
+            <button
+              type="submit"
+              class="bg-white/20 backdrop-blur-md
+                     border border-white/20
+                     px-5 py-3
+                     rounded-xl
+                     font-semibold
+                     hover:bg-white/30
+                     hover:scale-105
+                     transition-all duration-200"
+            >
+              📍 <%= city %>
+            </button>
+
+          </form>
+
+        <% }) %>
+
+      </div>
+
+    <% } else { %>
+
+      <div class="bg-white/10 backdrop-blur-md rounded-xl p-5 text-center text-blue-100">
+        <p>No favourite cities yet.</p>
+        <p class="text-sm mt-1">
+          Search for a city and save it to your favourites ⭐
+        </p>
+      </div>
+
+    <% } %>
+
+  </div>
+
+</section>
+
 <!-- Weather Display Section -->
 <section class="px-6 md:px-16 mt-14">
 
@@ -57,17 +115,35 @@
 
     <div class="max-w-4xl mx-auto bg-white/20 backdrop-blur-md rounded-3xl shadow-xl p-8 text-center">
 
-      <h3 class="text-2xl md:text-3xl font-bold">
-        📍 <%= weatherData.name %>, <%= weatherData.sys.country %>
-      </h3>
+  <h3 class="text-2xl md:text-3xl font-bold">
+    📍 <%= weatherData.name %>, <%= weatherData.sys.country %>
+  </h3>
 
-      <p class="text-6xl md:text-7xl font-extrabold mt-6">
+  <p class="text-6xl md:text-7xl font-extrabold mt-6">
         <%= (weatherData.main.temp - 273.15).toFixed(1) %>°C
       </p>
 
       <p class="mt-3 text-xl capitalize text-blue-100">
         <%= weatherData.weather[0].description %>
       </p>
+
+      <!-- Save City -->
+      <form action="/save-city" method="POST" class="mt-8">
+
+        <input
+          type="hidden"
+          name="saveCity"
+          value="<%= weatherData.name %>"
+        />
+
+        <button
+          type="submit"
+          class="bg-yellow-400 text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition"
+        >
+          ⭐ Save City
+        </button>
+
+      </form>
 
       <!-- Stats -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 text-sm md:text-base">
@@ -101,6 +177,8 @@
         </div>
 
       </div>
+
+    </div>
 
       <% if (weatherData.rain && weatherData.rain["1h"]) { %>
         <p class="mt-6 text-sm">

@@ -5,7 +5,7 @@ module.exports.getWeather =  async function(req, res) {
     try{
         const city = req.body.city;
         const weatherData = await weatherModel.getWeather(city);
-        res.render("home", {error:null,weatherData});
+        res.render("home", {error:null,User:req.user,weatherData});
     }catch(err) {
         req.flash("error", "Could not fetch weather data. Please try again.");
         return res.redirect("/home");

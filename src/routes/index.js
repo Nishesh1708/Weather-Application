@@ -12,10 +12,10 @@ router.get("/", function(req, res) {
 
 router.get("/home", isLoggedin ,function(req, res) { 
     const error = req.flash("error");
-    res.render("home",{error,weatherData:null});
+    res.render("home",{error,User:req.user,weatherData:null});
 })
 
 router.post("/weather", isLoggedin,getWeather);
-router.get("/save/:id/:city", isLoggedin ,saveCity);
+router.post("/save-city", isLoggedin ,saveCity);
 
 module.exports = router;

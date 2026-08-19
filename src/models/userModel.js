@@ -4,11 +4,7 @@ const userSchema = new mongoose.Schema({
     name: String,
     email:  String,
     password : String,
-    cities: {
-        type: [String],
-        default:[],
-        unique: true
-    }
+    cities: [String]
 })
 
 module.exports = mongoose.model("User", userSchema);

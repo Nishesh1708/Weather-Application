@@ -10,14 +10,13 @@ module.exports = async (req, res, next) => {
         if(req.cookies.token){
             const decoded = jwt.verify(req.cookies.token, process.env.JWT_KEY)
             const user = await userModel
-                .findOne({email : decoded.email})
+                .findOne({mail : decoded.email})
                 .select("-password")
             req.user = user
             next()
         }
     }catch(err){
-        err.flashMessage = "spomething went wrong";
-        err.redirect = "/";
-        next(err)
+        req.flash("error", "spomething went wrong")
+        return res.redirect('/')
     }
 }

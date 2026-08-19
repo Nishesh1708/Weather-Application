@@ -4,7 +4,7 @@ const debug = require('debug')('app:controller:registrationController');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-module.exports.registrationController = async function(req, res, next) {
+module.exports.registrationController = async function(req, res) {
     try{
         let {name, email, password } = req.body;
         let user = await userModel.findOne({email});
@@ -31,11 +31,13 @@ module.exports.registrationController = async function(req, res, next) {
             }
         })
     }catch(err) {
-        next(err);
+        debug(err);
+        req.flash("error", "Something went wrong");
+        return res.redirect("/account/register");
     }
 }
 
-module.exports.loginController = async function(req, res, next) {
+module.exports.loginController = async function(req, res) {
     try{
         let {email, password} = req.body;
         let user = await userModel.findOne({ email });
@@ -58,6 +60,7 @@ module.exports.loginController = async function(req, res, next) {
             return res.redirect("/home");
         })
     }catch(err){
-        next(err);
+        req.flash("error", "Something went wrong");
+        return res.redirect("/account/login");
     }
 }
